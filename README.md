@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青森咬一口蘋果 | 7天6夜冬季漫遊趣</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FBF8F2',
+                        paper: '#F5EEDC',
+                        appleRed: '#D32F2F',
+                        appleDark: '#B71C1C',
+                        auroraBlue: '#1A365D',
+                        slateBlue: '#2C4A6F',
+                        softYellow: '#FFF9E6',
+                        cardBg: '#FFFFFF',
+                        borderSketch: '#4A3B32'
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                        serif: ['"Noto Serif JP"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FBF8F2;
+            color: #2C2C2C;
+            font-family: 'Zen Maru Gothic', sans-serif;
+        }
+        .hand-drawn-border {
+            border: 2px solid #3E2723;
+            border-radius: 25px 18px 22px 20px / 20px 22px 18px 25px;
+            box-shadow: 3px 4px 0px rgba(62, 39, 35, 0.15);
+            transition: all 0.2s ease;
+        }
+        .hand-drawn-border:hover {
+            box-shadow: 4px 6px 0px rgba(62, 39, 35, 0.25);
+            transform: translateY(-2px);
+        }
+        .hand-drawn-card {
+            border: 2px dashed #8D6E63;
+            border-radius: 20px 15px 18px 16px / 16px 18px 15px 20px;
+            background-color: #FFFFFF;
+        }
+        .stamp-badge {
+            border: 2px solid #D32F2F;
+            border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%;
+            transform: rotate(-3deg);
+        }
+        .badge-reserved {
+            background-color: #FFEBEE;
+            border: 1.5px dashed #D32F2F;
+            color: #C62828;
+            border-radius: 12px;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FBF8F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D7CCC8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-cream min-h-screen flex flex-col justify-between selection:bg-appleRed selection:text-white">
+
+    <header class="w-full bg-[#F5EEDC] border-b-2 border-[#3E2723] py-6 px-4 shadow-sm relative overflow-hidden">
+        <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#FFCDD2] rounded-full opacity-30 pointer-events-none"></div>
+        <div class="absolute left-10 bottom-0 w-24 h-24 bg-[#BBDEFB] rounded-full opacity-30 pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-appleRed text-white rounded-full flex items-center justify-center font-bold text-2xl stamp-badge shadow">
+                    🍎
+                </div>
+                <div>
+                    <h1 class="text-[26px] font-bold text-auroraBlue tracking-wider">青森咬一口蘋果 ｜ 7天6夜冬季漫遊趣</h1>
+                    <p class="text-[20px] text-[#6D4C41] font-medium">12/06 (日) ～ 12/12 (六) 浪漫雪國與星野溫泉之旅</p>
+                </div>
+            </div>
+            <!-- Quick Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="openAccountingModal()" class="px-4 py-2 bg-auroraBlue text-white text-[20px] font-bold rounded-xl shadow hover:bg-slateBlue transition flex items-center gap-2">
+                    <span>💰</span> 旅費記帳本
+                </button>
+                <button onclick="toggleWeatherWidget()" class="px-4 py-2 bg-appleRed text-white text-[20px] font-bold rounded-xl shadow hover:bg-appleDark transition flex items-center gap-2">
+                    <span>❄️</span> 青森氣象
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="max-w-5xl mx-auto w-full px-4 my-6">
+        <div class="flex overflow-x-auto gap-3 py-2 no-scrollbar justify-start md:justify-center">
+            <button onclick="switchDay(1)" id="tab-1" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-appleRed text-white shadow transition shrink-0">
+                DAY 1 (12/06)
+            </button>
+            <button onclick="switchDay(2)" id="tab-2" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-cardBg text-auroraBlue shadow transition shrink-0 hover:bg-[#FFF9E6]">
+                DAY 2 (12/07)
+            </button>
+            <button onclick="switchDay(3)" id="tab-3" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-cardBg text-auroraBlue shadow transition shrink-0 hover:bg-[#FFF9E6]">
+                DAY 3 (12/08)
+            </button>
+            <button onclick="switchDay(4)" id="tab-4" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-cardBg text-auroraBlue shadow transition shrink-0 hover:bg-[#FFF9E6]">
+                DAY 4 (12/09)
+            </button>
+            <button onclick="switchDay(5)" id="tab-5" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-cardBg text-auroraBlue shadow transition shrink-0 hover:bg-[#FFF9E6]">
+                DAY 5 (12/10)
+            </button>
+            <button onclick="switchDay(6)" id="tab-6" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-cardBg text-auroraBlue shadow transition shrink-0 hover:bg-[#FFF9E6]">
+                DAY 6 (12/11)
+            </button>
+            <button onclick="switchDay(7)" id="tab-7" class="day-tab px-5 py-2.5 text-[20px] font-bold rounded-2xl border-2 border-[#3E2723] bg-cardBg text-auroraBlue shadow transition shrink-0 hover:bg-[#FFF9E6]">
+                DAY 7 (12/12)
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto w-full px-4 mb-16 flex-grow">
+        <div id="itinerary-content">
+            <!-- Content injected dynamically -->
+        </div>
+    </main>
+
+    <div id="weather-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-cream hand-drawn-border p-6 max-w-xl w-full relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleWeatherWidget()" class="absolute top-4 right-4 text-2xl font-bold text-auroraBlue hover:text-appleRed">✕</button>
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">❄️</span>
+                <h3 class="text-[26px] font-bold text-auroraBlue">青森即時氣象與 7-10 天預報</h3>
+            </div>
+            <p class="text-[20px] text-[#6D4C41] mb-4">即時串接氣象數據，提供青森市區未來 7 至 10 天的最新天氣、氣溫與降雪預報，為您的雪國之旅做好萬全準備！</p>
+            
+            <div id="weather-loading" class="text-center py-8 text-[20px] text-[#6D4C41]">
+                ⏳ 正在連線取得青森最新即時氣象資料...
+            </div>
+            
+            <div id="weather-forecast-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[20px] hidden">
+                <!-- Dynamic weather forecast cards injected here -->
+            </div>
+
+            <div class="mt-6 text-center">
+                <button onclick="toggleWeatherWidget()" class="px-6 py-2 bg-auroraBlue text-white text-[20px] font-bold rounded-xl">關閉氣象</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="accounting-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-cream hand-drawn-border p-6 max-w-xl w-full relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="openAccountingModal()" class="absolute top-4 right-4 text-2xl font-bold text-auroraBlue hover:text-appleRed">✕</button>
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">💰</span>
+                <h3 class="text-[26px] font-bold text-auroraBlue">日系旅費記帳本 (自動除以二)</h3>
+            </div>
+            
+            <form id="expense-form" onsubmit="addExpense(event)" class="space-y-4 mb-6 bg-white hand-drawn-card p-4">
+                <div>
+                    <label class="block text-[20px] font-bold text-auroraBlue mb-1">消費項目名稱</label>
+                    <input type="text" id="exp-title" required placeholder="例如：美味拉麵 / 伴手禮" class="w-full px-3 py-2 text-[20px] border-2 border-[#D7CCC8] rounded-xl focus:outline-none focus:border-appleRed">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[20px] font-bold text-auroraBlue mb-1">金額 (日幣 ¥)</label>
+                        <input type="number" id="exp-amount" required placeholder="1000" class="w-full px-3 py-2 text-[20px] border-2 border-[#D7CCC8] rounded-xl focus:outline-none focus:border-appleRed">
+                    </div>
+                    <div>
+                        <label class="block text-[20px] font-bold text-auroraBlue mb-1">支付人</label>
+                        <input type="text" id="exp-payer" required placeholder="例如：小美 / 大明" class="w-full px-3 py-2 text-[20px] border-2 border-[#D7CCC8] rounded-xl focus:outline-none focus:border-appleRed">
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3 bg-appleRed text-white text-[20px] font-bold rounded-xl shadow hover:bg-appleDark transition">
+                    ➕ 新增記帳並計算分攤
+                </button>
+            </form>
+
+            <div class="bg-[#FFF9E6] hand-drawn-card p-4 mb-4 flex justify-between items-center text-[20px]">
+                <div>
+                    <p class="text-[#6D4C41]">總消費金額：</p>
+                    <p id="total-amount" class="text-2xl font-bold text-appleRed">¥0</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[#6D4C41]">每人平均分攤 (除以2)：</p>
+                    <p id="per-person-amount" class="text-2xl font-bold text-auroraBlue">¥0</p>
+                </div>
+            </div>
+
+            <div class="space-y-2 max-h-48 overflow-y-auto" id="expense-list">
+                <!-- Dynamic items -->
+            </div>
+            
+            <div class="mt-6 text-center">
+                <button onclick="openAccountingModal()" class="px-6 py-2 bg-auroraBlue text-white text-[20px] font-bold rounded-xl">關閉記帳本</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full bg-[#F5EEDC] border-t-2 border-[#3E2723] py-6 text-center text-[20px] text-[#6D4C41]">
+        <p>🍎 青森咬一口蘋果 ｜ 7天6夜冬季漫遊趣 ｜ 輕鬆愜意平安旅遊！ ❄️</p>
+    </footer>
+
+    <script>
+        var currentOriginName = "HOME";
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    currentOriginName = position.coords.latitude + "," + position.coords.longitude;
+                },
+                function(error) {
+                    console.log("Geolocation fallback to HOME default text.");
+                },
+                { timeout: 5000 }
+            );
+        }
+
+        var itineraryData = {
+            1: {
+                date: "12/06 (日) SUN 日曜日",
+                title: "DAY 1：啟程與跨海交通 (台灣 → 青森)",
+                sections: [
+                    {
+                        time: "06:45*",
+                        badge: "已預約",
+                        title: "專車送機",
+                        details: [
+                            "出發路段: 自助/HOME 出發前往桃園國際機場第二航廈(T2)。",
+                            "乘車時間: 約60分鐘。",
+                            "服務編號: JW00085571。"
+                        ],
+                        transport: { isDynamicOrigin: true, destination: "桃園國際機場第二航廈" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "07:30",
+                        badge: "報到",
+                        title: "機場報到",
+                        details: [
+                            "報到地點: 桃園機場第二航廈(T2) 長榮航空櫃台。",
+                            "行李規格: 免費托運行李上限為23KG。",
+                            "服務編號: 1722077790。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "09:55 - 14:20",
+                        badge: "航班",
+                        title: "國際航班飛行 (BR122)",
+                        details: [
+                            "航班編號: 長榮航空 BR122 (直飛)。",
+                            "航線: 台北桃園機場(TPE) 直飛 青森機場(AOJ)。",
+                            "飛行時間: 3小時25分鐘。",
+                            "機票訂單編號: 1722077790。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "14:50 - 15:25",
+                        badge: "接駁",
+                        title: "機場接駁與市區入住",
+                        details: [
+                            "搭乘區間: 青森機場(2號登機口) 搭乘接駁巴士，直達 JR 青森站(11號月台)。",
+                            "車程與票價: 乘車時間約40分鐘，票價為980円/人。",
+                            "表定班次: 主選班次 14:50 (預計15:25抵達)；備選15:20 | 16:10 | 17:20。"
+                        ],
+                        transport: { origin: "青森機場 2號登機口", destination: "JR 青森站 11號月台" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "16:00*",
+                        badge: "已預約住宿",
+                        title: "飯店 Check-in & 行李安頓",
+                        details: [
+                            "下榻住宿: 瑞拉博 ReLabo (Medical Spa & Stay)。",
+                            "地址: 038-0012 青森縣青森市柳川 1-1-5。",
+                            "聯絡電話: +81-5031-348096。",
+                            "訂單編號: 1747522206。",
+                            "「和」溫泉開放時段: 上午 06:00 - 11:00，下午 15:00 - 24:00。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "16:00",
+                        badge: "散步",
+                        title: "海濱日落漫遊",
+                        details: [
+                            "核心景點: AOMORI Letter Monument (文字地標裝置)。",
+                            "散步地點: 青森站前沙灘。",
+                            "日落時間: 當日精準日落時刻為 16:09，欣賞海灣黃金暮色魔幻時光。"
+                        ],
+                        transport: { origin: "瑞拉博 ReLabo", destination: "AOMORI Letter Monument 青森站前沙灘" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "16:30",
+                        badge: "甜點",
+                        title: "文創名所與蘋果甜點",
+                        details: [
+                            "造訪地標: A-FACTORY (エーファクトリー)，地址：青森市柳川 1-4-2。",
+                            "營業時間: 10:00 - 19:00。",
+                            "特色美食: 品嚐 a la ringo (あら、りんご) 招牌焦糖蘋果派。"
+                        ],
+                        transport: { origin: "青森站前沙灘", destination: "A-FACTORY 青森市柳川1-4-2" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "18:00",
+                        badge: "購物",
+                        title: "站前商場購物採買 (&LOVINA)",
+                        details: [
+                            "商場地址: 青森縣青森市柳川 1-1-5，營業時間: 10:00 - 20:00。",
+                            "重點樓層: 1F 松本清藥妝 (08:00 - 21:00) 、2F DAISO 大創 (無退稅) 、3F 無印良品。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "20:00",
+                        badge: "晚餐二選一",
+                        title: "晚餐美饌推薦 (彈性選擇方案)",
+                        details: [
+                            "方案1【在地海鮮居酒屋】：旬肴ひでか (地址：青森市新町1丁目5-8，營業 17:00 - 24:00)。",
+                            "方案2【炭火燒肉】：南大門 新町店 (地址：青森縣青森市新町1-8-3，營業 15:15 - 23:00)。"
+                        ],
+                        isRestaurant: true,
+                        restaurantLocations: [
+                            { name: "旬肴ひでか (海鮮居酒屋)", address: "青森市新町1丁目5-8" },
+                            { name: "南大門 新町店 (炭火燒肉)", address: "青森縣青森市新町1-8-3" }
+                        ]
+                    }
+                ]
+            },
+            2: {
+                date: "12/07 (一) MON 月曜日",
+                title: "DAY 2：早晨神社祈福、靈魂拉麵與商圈大採買",
+                sections: [
+                    {
+                        time: "09:30",
+                        badge: "交通",
+                        title: "公車接駁出發",
+                        details: [
+                            "交通方式: 於青森駅前 2/3號月台搭乘公車 C10/F10 前往県庁前。",
+                            "建議班次: 09:33 | 09:43 | 09:49。",
+                            "車程與票價: 乘車約5分鐘，步行7分鐘，票價 170円/人。"
+                        ],
+                        transport: { origin: "青森駅前 2/3號月台", destination: "県庁前" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "10:00",
+                        badge: "參拜",
+                        title: "雙神社祈福巡禮",
+                        details: [
+                            "廣田神社 (病厄除守護神)：青森市長島2丁目13-5。",
+                            "金生稻荷神社 (金運招財)：青森市長島2丁目18-6 (08:30-16:30，週三公休)。",
+                            "特色體驗: 金狐像貼金箔 、洗錢儀式。"
+                        ],
+                        transport: { origin: "県庁前", destination: "廣田神社 青森市長島2丁目13-5" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "11:00",
+                        badge: "午餐",
+                        title: "青森靈魂拉麵：味之札幌大西",
+                        details: [
+                            "招牌料理: 味噌咖哩牛奶拉麵。",
+                            "店鋪地址: 青森市古川 1-15-6。",
+                            "營業時間: 11:00 - 18:00 (週日與週二公休，週一正常營業)。"
+                        ],
+                        isRestaurant: true,
+                        restaurantLocations: [
+                            { name: "味之札幌大西", address: "青森市古川1-15-6" }
+                        ]
+                    },
+                    {
+                        time: "12:00",
+                        badge: "交通",
+                        title: "商圈接駁交通",
+                        details: [
+                            "交通方式: 自県庁前搭乘公車 L31/M35 直達 CiINA CIINA青森前。",
+                            "表定班次: 11:43 | 12:11 | 12:43，車程約22分鐘，票價 230円/人。"
+                        ],
+                        transport: { origin: "県庁前", destination: "CiINA CIINA Aomori-mae" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "13:00 - 19:00",
+                        badge: "購物",
+                        title: "Dream Town Ali 與周邊商場血拚",
+                        details: [
+                            "核心商場: Dream Town Ali (青森市濱田3丁目1-1)。",
+                            "重點品牌: UNIQLO 、GU 、ABC-MART 、DAISO大創 、驚安之殿堂 唐吉訶德 (09:00 - 24:00)。",
+                            "周邊順訪: Hard Off 二手店 (東大野2-8-7，20:00閉店) 、Happy Drug 藥妝店。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "19:30",
+                        badge: "交通",
+                        title: "返回市區公車",
+                        details: [
+                            "搭乘路線: 自 CiINA CIINA 搭乘 A1/B1 返回 青森駅前。",
+                            "參考班次: 19:28 | 19:59 | 20:28 | 20:59。",
+                            "車程約25分鐘，票價 230円/人。"
+                        ],
+                        transport: { origin: "CiINA CIINA Aomori-mae", destination: "青森駅前" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "20:30",
+                        badge: "晚餐二選一",
+                        title: "晚餐方案二選一",
+                        details: [
+                            "方案1【燒肉首選】：Tatsuya (青森市新町1-9-19，營業 17:00 - 22:30)。",
+                            "方案2【備用居酒屋】：茜屋 (青森市安方1-3-26，營業 17:00 - 24:00)。"
+                        ],
+                        isRestaurant: true,
+                        restaurantLocations: [
+                            { name: "Tatsuya 燒肉", address: "青森市新町1-9-19" },
+                            { name: "茜屋 居酒屋", address: "青森市安方1-3-26" }
+                        ]
+                    },
+                    {
+                        time: "22:00*",
+                        badge: "住宿溫泉",
+                        title: "返回旅宿與夜間溫泉",
+                        details: [
+                            "下榻飯店: 瑞拉博 ReLabo (Medical Spa & Stay)。",
+                            "夜間放鬆: 享受館內「和」溫泉 (開放時段上午 06:00 - 11:00、下午 15:00 - 24:00)。"
+                        ],
+                        isRestaurant: false
+                    }
+                ]
+            },
+            3: {
+                date: "12/08 (二) TUE 火曜日",
+                title: "DAY 3：美術館藝術巡禮、ASPAM 觀光與星野接駁專車",
+                sections: [
+                    {
+                        time: "08:45*",
+                        badge: "已預約",
+                        title: "辦理退房 & 暫存行李",
+                        details: [
+                            "住宿: 瑞拉博 ReLabo。辦理退房手續並於櫃台暫存大型行李，輕裝展開上午行程。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "09:00",
+                        badge: "交通",
+                        title: "公車接駁前往美術館",
+                        details: [
+                            "搭乘路線: 青森車站6號月台搭乘公車 S51 直達縣立美術館前。",
+                            "表定班次: 09:15 | 09:59 | 11:50。車程約20分鐘，票價 280円/人。"
+                        ],
+                        transport: { origin: "青森車站 6號月台", destination: "青森縣立美術館前" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "09:30",
+                        badge: "門票 700円",
+                        title: "青森縣立美術館參觀",
+                        details: [
+                            "地址: 青森市安田字近野185。營業時間: 09:30 - 17:00。",
+                            "參觀重點: 奈良美智代表作——青森犬、森之子。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "11:30",
+                        badge: "交通",
+                        title: "返回市區公車",
+                        details: [
+                            "搭乘路線: 自縣立美術館前搭乘 A1 返回 新町一丁目。",
+                            "建議班次: 11:44 | 12:34。車程約17分鐘，票價 280円/人。"
+                        ],
+                        transport: { origin: "青森縣立美術館前", destination: "新町一丁目" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "12:30",
+                        badge: "午餐二選一",
+                        title: "市區特色午餐",
+                        details: [
+                            "方案1【海鮮居酒屋】：海の食堂大福丸 (青森市安方1丁目2-11， 11:30 - 14:30)。",
+                            "方案2【在地拉麵】：らーめん砂小屋沙丁魚乾拉麵 (青森市新町1-11-9 1F)。"
+                        ],
+                        isRestaurant: true,
+                        restaurantLocations: [
+                            { name: "海の食堂 大福丸", address: "青森市安方1丁目2-11" },
+                            { name: "らーめん砂小屋", address: "青森市新町1-11-9" }
+                        ]
+                    },
+                    {
+                        time: "14:00",
+                        badge: "門票 500-900円",
+                        title: "觀光物產館 ASPAM & 甜點",
+                        details: [
+                            "地址: 青森市安方1丁目1番40号 (09:00-19:00)。",
+                            "青之森廳 360°3D 數位映像 (預定 14:00進場，A券 900円含展望台，C券 500円僅展望台)。",
+                            "特色點心: Sweets Factory pampam ASPAM 品嚐起司蘋果派。"
+                        ],
+                        transport: { origin: "新町一丁目", destination: "青森市安方1丁目1番40号 ASPAM" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "14:30",
+                        badge: "領行李",
+                        title: "返回瑞拉博領取行李",
+                        details: [
+                            "返回 ReLabo 領取寄放行李，準備前往西口接駁站點。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "15:00*",
+                        badge: "★已預約專車",
+                        title: "星野接駁專車前往奧入瀨溪流",
+                        details: [
+                            "上車地點: 青森站西口。車程約150分鐘，車資 4000円/人(現場付款)。",
+                            "接駁預訂號碼: 5631301。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "17:30",
+                        badge: "住宿飯店",
+                        title: "星野奧入瀨溪流飯店 Check-in",
+                        details: [
+                            "飯店地址: 青森縣十和田市奥瀬栃久保231。電話: +81-50-3134-8096。",
+                            "預約資訊: 號碼 1sw8vd0xs4、密碼 bbec2e。",
+                            "重要提醒: 須於 18:00 前至櫃台付現 & 簽署次日行程協議書。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "17:30",
+                        badge: "迎賓",
+                        title: "飯店迎賓 Happy Hour & 森林神話",
+                        details: [
+                            "地點: 東館二樓大廳「森林神話」。免費暢飲清酒、蘋果汁與氣泡酒 (16:00 - 18:30)。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "19:00",
+                        badge: "晚餐",
+                        title: "晚餐：青森蘋果廚房 (自助美饌)",
+                        details: [
+                            "地點: 東館 B1 樓。人氣美饌: 帆立貝、章魚、烤牛肉、蘋果酥皮派 (餐費 6050円/人，方案已含)。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "22:00",
+                        badge: "溫泉",
+                        title: "溫泉大浴場「冰瀑之湯」",
+                        details: [
+                            "東館2樓 (06:00 - 24:00免費)。冬季限定露天溫泉可欣賞 3.5公尺壯觀冰瀑景致。"
+                        ],
+                        isRestaurant: false
+                    }
+                ]
+            },
+            4: {
+                date: "12/09 (三) WED 水曜日",
+                title: "DAY 4：十和田湖巴士深度遊與奧入瀨溪流漫步",
+                sections: [
+                    {
+                        time: "07:00",
+                        badge: "早餐",
+                        title: "晨間元氣早餐：青森蘋果廚房",
+                        details: [
+                            "東館B1樓 (07:00 - 10:00)。必吃蘋果法國吐司、海鮮丼、帆立貝拉麵 (餐費 3300円/人，方案已含)。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "10:00*",
+                        badge: "已預約",
+                        title: "十和田湖巴士深度遊",
+                        details: [
+                            "活動名稱: 渓流とわだ湖バスツアー。集合地點: 西館2樓溪流-BASE櫃台。",
+                            "巡遊路線: 飯店 → 十和田湖子ノロ(10分) → 上流域(10分) → 馬門岩(15分) → 返回。",
+                            "費用: 3850円/人 (現場付款)。",
+                            "預訂編號: 5607591"
+                        ],
+                        isRestaurant: false 
+                    },
+                    {
+                        time: "12:50*",
+                        badge: "★已預約",
+                        title: "奧入瀨溪流巴士觀光",
+                        details: [
+                            "集合地點: 西館2樓溪流-BASE櫃台。路線: 飯店 → 馬門岩(10分) → 石戶之瀨(10分) → 返回。",
+                            "費用: 免費", 
+                            "預訂編號: 5585540"
+                        ],
+                        isRestaurant: false 
+                    },
+                    {
+                        time: "14:00",
+                        badge: "自由散策",
+                        title: "午後自由探索時段",
+                        details: [
+                            "重要提醒: 須於 18:00 前至櫃台付現 & 簽署次日行程協議書。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "17:30",
+                        badge: "晚餐",
+                        title: "蘋果饗宴晚餐：青森蘋果廚房",
+                        details: [
+                            "東館B1樓 (17:30 - 21:00)。帆立貝、章魚、烤牛肉、現烤熱騰騰蘋果酥皮派 (餐費 6050円/人，方案已含)。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "22:00",
+                        badge: "溫泉",
+                        title: "夜間暖湯：入冬限定冰瀑溫泉",
+                        details: [
+                            "東館2樓溫泉大浴場 (06:00 - 24:00)，享受 3.5 公尺壯麗冰瀑之湯。"
+                        ],
+                        isRestaurant: false
+                    }
+                ]
+            },
+            5: {
+                date: "12/10 (四) THU 木曜日",
+                title: "DAY 5：十和田湖開運散步、星野青森屋移宿與睡魔祭公演",
+                sections: [
+                    {
+                        time: "08:00",
+                        badge: "早餐",
+                        title: "晨間元氣早餐：青森蘋果廚房",
+                        details: [
+                            "東館B1樓 (07:00 - 10:00)，享用美味蘋果法國吐司與海鮮丼 (餐費 3300円/人，方案已含)。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "08:50*",
+                        badge: "已預約",
+                        title: "十和田湖開運自然漫步",
+                        details: [
+                            "集合地點: 西館2樓溪流-BASE。飯店 → 09:35十和田湖安宮(90分) → 11:50返抵飯店。",
+                            "費用: 6600円/人 (現場付款)，預計三小時。",
+                            "預訂編號: 5607473"
+                        ],
+                        isRestaurant: false 
+                    },
+                    {
+                        time: "12:00*",
+                        badge: "退房",
+                        title: "辦理奧入瀨溪流飯店退房",
+                        details: [
+                            "於櫃台辦理 Check-out 手續。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "12:50*",
+                        badge: "已預約",
+                        title: "奧入瀨溪流巴士觀光",
+                        details: [
+                            "集合地點: 西館2樓溪流-BASE。預計一小時。",
+                            "費用: 免費",
+                            "預訂編號: 5611012"
+                        ],
+                        isRestaurant: false  
+                    },
+                    {
+                        time: "15:30*",
+                        badge: "★已預約專車",
+                        title: "搭乘星野度假村跨館接駁車",
+                        details: [
+                            "路線: 奧入瀨溪流飯店 → 星野青森屋。乘車約 60分鐘。",
+                            "預訂編號: 5566625"
+                        ],
+                        isRestaurant: false   
+                    },
+                    {
+                        time: "16:30*",
+                        badge: "已預約住宿",
+                        title: "登記入住星野青森屋",
+                        details: [
+                            "地址: 青森縣三澤市古間木山56。電話: +81-50-3134-8096。",
+                            "預約資訊: 號碼 c4a4sq7dqk、密碼 8166ff。",
+                            "館內亮點: 門口歡迎小馬拍照、Jawamegu廣場蘋果水龍頭暢飲蘋果汁。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "18:00*",
+                        badge: "晚餐預約",
+                        title: "晚餐：NORESORE 食堂鄉土自助餐",
+                        details: [
+                            "供餐時段: 17:30 - 21:00。鄉土料理與豐富海鮮自助餐 (餐費 5500円/人，方案已含)。",
+                            "預訂編號: 5567737"
+                        ],
+                        isRestaurant: false 
+                    },
+                    {
+                        time: "21:00*",
+                        badge: "★公演預約",
+                        title: "陸奥祭屋舞台表演",
+                        details: [
+                            "演出時段: 21:00 - 22:00。震撼重現青森四大睡魔祭典元素。",
+                            "票價費用: 1800円/人(已預付)，預計一小時。",
+                            "預訂編號: 18577",
+                            "座位編號: C7/C8"
+                        ],
+                        isRestaurant: false  
+                    },
+                    {
+                        time: "22:00",
+                        badge: "溫泉",
+                        title: "夜間泡湯：本館B1浮湯與青森睡魔桑拿",
+                        details: [
+                            "露天溫泉「浮湯」欣賞漂浮睡魔花燈；睡魔桑拿定時播放震撼祭典音樂。",
+                            "浮湯開放時間: 上午 05:00 - 11:30  下午 14:30 - 24:00",
+                            "桑拿開放時間: 上午 06:00 - 11:30  下午 14:30 - 23:00"
+                        ],
+                        isRestaurant: false  
+                    }
+                ]
+            },
+            6: {
+                date: "12/11 (五) FRI 金曜日",
+                title: "DAY 6：十和田市現代美術館巡禮與青森屋祭典之夜",
+                sections: [
+                    {
+                        time: "06:00",
+                        badge: "早湯",
+                        title: "晨間名湯巡禮：元湯",
+                        details: [
+                            "可搭乘飯店免費接駁車前往或步行10分鐘 (05:00 - 22:00，需自備毛巾)。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "08:00*",
+                        badge: "早餐預約",
+                        title: "早餐：NORESORE 食堂",
+                        details: [
+                            "招牌味噌烤扇貝、帆立貝拉麵 (餐費 3300円/人，方案已含)。",
+                            "預訂編號: 5567679"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "11:20*",
+                        badge: "方案A B選擇",
+                        title: "前往十和田現代美術館 (交通方案二選一)",
+                        details: [
+                            "【A方案｜大眾運輸接駁】：11:20 搭乘星野免費接駁車(備選10:15 | 10:45)至三澤站 ➔ 11:45 轉乘十和田觀光電鐵公車至官廳街通(備選10:45 | 12:45)，票價740円/人。",
+                            "【B方案｜計程車直達】：青森屋直達十和田現代美術館 (車資約 6000円/車，須前一日預約)。"
+                        ],
+                        transport: { origin: "星野青森屋", destination: "十和田市現代美術館 青森縣十和田市西二番町10-9" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "12:30",
+                        badge: "門票 1800円",
+                        title: "現代藝術巡禮：十和田市現代美術館",
+                        details: [
+                            "地址: 青森縣十和田市西二番町10-9 (09:00 - 17:00)。",
+                            "必看作品: 羅恩·穆克超寫實巨作《站立的女人》、奈良美智《夜露死苦女孩》、草間彌生戶外南瓜與花馬。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "16:00",
+                        badge: "方案AB選擇",
+                        title: "下午回程：返回青森屋 (交通方案二選一)",
+                        details: [
+                            "【A方案｜大眾運輸】：16:17 搭乘十和田觀光電鐵公車(備選14:47 | 17:47)返回三澤站 ➔ 16:55* 搭乘星野免費接駁車返回青森屋 (預訂編號 5567606)。",
+                            "【B方案｜計程車直達】：美術館直達青森屋 (車資約 6000円/車，須前一日預約)。"
+                        ],
+                        transport: { origin: "十和田市現代美術館", destination: "星野青森屋" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "17:30*",
+                        badge: "晚餐預約",
+                        title: "晚餐：NORESORE 食堂海鮮饗宴",
+                        details: [
+                            "供餐時段: 17:30 - 21:00。鐵板牛肉、現炸天婦羅、烤帆立貝、客製海鮮丼 (餐費 5500円/人，方案已含)。",
+                            "預訂編號: 5567656"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "22:00",
+                        badge: "溫泉",
+                        title: "夜間放鬆：浮湯與青森睡魔桑拿",
+                        details: [
+                            "露天溫泉「浮湯」欣賞漂浮睡魔花燈；睡魔桑拿定時播放震撼祭典音樂。",
+                            "浮湯開放時間: 上午 05:00 - 11:30  下午 14:30 - 24:00",
+                            "桑拿開放時間: 上午 06:00 - 11:30  下午 14:30 - 23:00"
+                        ],
+                        isRestaurant: false   
+                    }
+                ]
+            },
+            7: {
+                date: "12/12 (六) SAT 土曜日",
+                title: "DAY 7：晨間朝湯、鐵道與機場雙段轉乘返回溫暖的家",
+                sections: [
+                    {
+                        time: "07:00*",
+                        badge: "早餐預約",
+                        title: "晨間元氣早餐與辦理退房：NORESORE 食堂",
+                        details: [
+                            "味噌烤扇貝、帆立貝拉麵 (餐費 3300円/人，方案已含)。",
+                            "預訂編號: 5567717"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "08:45*",
+                        badge: "★已預約接駁",
+                        title: "搭乘星野接駁專車 (備選09:30 | 10:15) 前往車站",
+                        details: [
+                            "接駁區間: 青森屋 → 三澤站。",
+                            "預訂編號: 5566698",
+                            "費用: 免費",
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "10:00",
+                        badge: "鐵道 2140円",
+                        title: "搭乘 09:20 - 10:34 (備選11:06 - 12:20) 青森鐵路返回青森站",
+                        details: [
+                            "乘車區間: 三澤站 → 青森站。乘車時間約75分鐘，票價 2140円/人。"
+                        ],
+                        transport: { origin: "三澤站", destination: "JR 青森站" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "11:00",
+                        badge: "巴士 980円",
+                        title: "轉乘機場接駁巴士 (車次 10:30 | 11:25 | 12:30 | 12:40)",
+                        details: [
+                            "乘車區間: JR青森站 → 青森機場。乘車時間約40分鐘，票價 980円/人。"
+                        ],
+                        transport: { origin: "JR 青森站", destination: "青森機場" },
+                        isRestaurant: false
+                    },
+                    {
+                        time: "13:00",
+                        badge: "機場報到",
+                        title: "青森機場先辦理退稅確認，再至航空公司櫃檯報到與行李託運。",
+                        details: [
+                            "航司櫃台: 長榮航空櫃台報到，行李托運上限 23KG。",
+                            "訂單編號: 1722077790"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "15:30 - 19:00",
+                        badge: "航班",
+                        title: "國際航班返台 (BR121)",
+                        details: [
+                            "航線航段: 青森機場 (AOJ) → 桃園國際機場 (TPE)。飛行時間 4小時10分鐘。"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "20:00*",
+                        badge: "已預約接機",
+                        title: "專車接機返家",
+                        details: [
+                            "接機地點: 桃園機場第二航廈 (T2) ➔ HOME。車程約60分鐘。",
+                            "訂單編號: JW00085572"
+                        ],
+                        isRestaurant: false
+                    },
+                    {
+                        time: "21:00",
+                        badge: "圓滿完成",
+                        title: "平安返抵家門",
+                        details: [
+                            "正式為 7天6夜的青森冬日蘋果與溫泉之旅劃下圓滿句點。"
+                        ],
+                        isRestaurant: false
+                    }
+                ]
+            }
+        };
+
+        var currentDay = 1;
+
+        function switchDay(day) {
+            currentDay = day;
+            var tabs = document.querySelectorAll('.day-tab');
+            if (tabs) {
+                tabs.forEach(function(tab) {
+                    tab.classList.remove('bg-appleRed', 'text-white');
+                    tab.classList.add('bg-cardBg', 'text-auroraBlue');
+                });
+            }
+            var activeTab = document.getElementById('tab-' + day);
+            if (activeTab) {
+                activeTab.classList.remove('bg-cardBg', 'text-auroraBlue');
+                activeTab.classList.add('bg-appleRed', 'text-white');
+            }
+
+            var dayData = itineraryData[day];
+            var container = document.getElementById('itinerary-content');
+            if (!container || !dayData) return;
+
+            var html = '<div class="mb-6 text-center">';
+            html += '<span class="inline-block px-4 py-1 bg-[#FFCDD2] text-appleRed font-bold text-[20px] rounded-full mb-2 stamp-badge">' + dayData.date + '</span>';
+            html += '<h2 class="text-[26px] font-bold text-auroraBlue font-serif">' + dayData.title + '</h2>';
+            html += '</div><div class="space-y-6">';
+
+            dayData.sections.forEach(function(section) {
+                var isReserved = section.time.indexOf('*') !== -1 || section.badge.indexOf('預約') !== -1;
+                var badgeClass = isReserved ? 'badge-reserved px-3 py-1 text-[18px] font-bold' : 'px-3 py-1 bg-[#E3F2FD] text-auroraBlue font-bold text-[18px] rounded-xl border border-[#90CAF9]';
+                
+                var transportBtn = '';
+                if (section.transport) {
+                    var origin = section.transport.origin;
+                    if (section.transport.isDynamicOrigin) {
+                        origin = currentOriginName;
+                    }
+                    var originEncoded = encodeURIComponent(origin || "Current Location");
+                    var destEncoded = encodeURIComponent(section.transport.destination);
+                    var mapUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + originEncoded + '&destination=' + destEncoded;
+                    transportBtn = '<a href="' + mapUrl + '" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E8F5E9] text-[#2E7D32] border border-[#A5D6A7] rounded-xl text-[18px] font-bold hover:bg-[#C8E6C9] transition shadow-sm mt-2"><span>🗺️</span> 規劃交通路線 (Google Maps)</a>';
+                }
+
+                var restaurantBtns = '';
+                if (section.isRestaurant && section.restaurantLocations) {
+                    restaurantBtns = '<div class="flex flex-wrap gap-2 mt-3">';
+                    section.restaurantLocations.forEach(function(rest) {
+                        var restMapUrl = 'https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=' + encodeURIComponent(rest.address);
+                        restaurantBtns += '<a href="' + restMapUrl + '" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FFF3E0] text-[#E65100] border border-[#FFCC80] rounded-xl text-[18px] font-bold hover:bg-[#FFE0B2] transition shadow-sm"><span>🍽️</span> 導航至 ' + rest.name + '</a>';
+                    });
+                    restaurantBtns += '</div>';
+                }
+
+                html += '<div class="hand-drawn-card p-5 bg-cardBg shadow-sm relative overflow-hidden">';
+                html += '<div class="absolute top-0 left-0 w-2 h-full bg-appleRed opacity-75"></div>';
+                html += '<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">';
+                html += '<div class="flex items-center gap-3"><span class="text-2xl font-bold text-auroraBlue font-serif">' + section.time + '</span>';
+                html += '<span class="' + badgeClass + '">' + section.badge + '</span></div></div>';
+                html += '<h3 class="text-[22px] font-bold text-[#3E2723] mb-2">' + section.title + '</h3>';
+                html += '<ul class="space-y-1 text-[20px] text-[#4A3B32] mb-3">';
+
+                section.details.forEach(function(detail) {
+                    html += '<li class="flex items-start gap-2"><span class="text-appleRed mt-1">•</span> <span>' + detail + '</span></li>';
+                });
+
+                html += '</ul><div class="flex flex-wrap gap-2 pt-2 border-t border-[#F0E6D2]">' + transportBtn + restaurantBtns + '</div></div>';
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function toggleWeatherWidget() {
+            var modal = document.getElementById('weather-modal');
+            if (modal) {
+                modal.classList.toggle('hidden');
+                if (!modal.classList.contains('hidden')) {
+                    fetchAomoriWeather();
+                }
+            }
+        }
+
+        async function fetchAomoriWeather() {
+            var loadingEl = document.getElementById('weather-loading');
+            var containerEl = document.getElementById('weather-forecast-container');
+            if (!loadingEl || !containerEl) return;
+
+            loadingEl.style.display = 'block';
+            containerEl.classList.add('hidden');
+
+            try {
+                // Fetching real-time weather data for Aomori (Lat: 40.8244, Lon: 140.74) using Open-Meteo API (free, no key required)
+                var response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=40.8244&longitude=140.74&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo');
+                var data = await response.json();
+
+                if (data && data.daily) {
+                    var daily = data.daily;
+                    var html = '';
+                    
+                    // Loop through 7 to 10 days available
+                    for (var i = 0; i < daily.time.length; i++) {
+                        var dateStr = daily.time[i];
+                        var maxTemp = daily.temperature_2m_max[i];
+                        var minTemp = daily.temperature_2m_min[i];
+                        var weatherCode = daily.weathercode[i];
+                        var pop = daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : 0;
+                        
+                        var weatherInfo = getWeatherDescription(weatherCode);
+
+                        html += '<div class="hand-drawn-card p-3 bg-white text-left">';
+                        html += '<div class="flex justify-between items-center mb-1">';
+                        html += '<span class="font-bold text-auroraBlue text-[18px]">' + dateStr + '</span>';
+                        html += '<span class="text-2xl">' + weatherInfo.icon + '</span>';
+                        html += '</div>';
+                        html += '<p class="text-[17px] font-bold text-[#3E2723]">' + weatherInfo.desc + '</p>';
+                        html += '<p class="text-[16px] text-[#555]">🌡️ 氣溫: ' + minTemp + '°C ~ ' + maxTemp + '°C</p>';
+                        html += '<p class="text-[16px] text-[#555]">💧 降雨/雪機率: ' + pop + '%</p>';
+                        html += '</div>';
+                    }
+
+                    containerEl.innerHTML = html;
+                    loadingEl.style.display = 'none';
+                    containerEl.classList.remove('hidden');
+                } else {
+                    throw new Error('Invalid data format');
+                }
+            } catch (error) {
+                console.error("Failed to fetch weather:", error);
+                loadingEl.innerHTML = '⚠️ 無法自動連線取得最新氣象，請確認網路連線或稍後再試。';
+            }
+        }
+
+        function getWeatherDescription(code) {
+            // WMO Weather interpretation codes (Open-Meteo)
+            if (code === 0) return { icon: '☀️', desc: '晴朗' };
+            if (code >= 1 && code <= 3) return { icon: '⛅', desc: '多雲時晴' };
+            if (code >= 45 && code <= 48) return { icon: '🌫️', desc: '濃霧' };
+            if (code >= 51 && code <= 67) return { icon: '🌧️', desc: '降雨' };
+            if (code >= 71 && code <= 77) return { icon: '❄️', desc: '降雪 / 暴雪' };
+            if (code >= 80 && code <= 82) return { icon: '🌦️', desc: '陣雨' };
+            if (code >= 85 && code <= 86) return { icon: '🌨️', desc: '陣雪' };
+            if (code >= 95) return { icon: '⚡', desc: '雷雨' };
+            return { icon: '🌤️', desc: '多雲' };
+        }
+
+        function openAccountingModal() {
+            var modal = document.getElementById('accounting-modal');
+            if (modal) modal.classList.toggle('hidden');
+            renderExpenses();
+        }
+
+        var expenses = [
+            { title: "Day 1 焦糖蘋果派", amount: 850, payer: "小美" },
+            { title: "Day 2 味噌咖哩拉麵", amount: 2400, payer: "大明" }
+        ];
+
+        function addExpense(event) {
+            if (event) event.preventDefault();
+            var titleInput = document.getElementById('exp-title');
+            var amountInput = document.getElementById('exp-amount');
+            var payerInput = document.getElementById('exp-payer');
+
+            if (!titleInput || !amountInput || !payerInput) return;
+
+            var newExp = {
+                title: titleInput.value,
+                amount: parseFloat(amountInput.value),
+                payer: payerInput.value
+            };
+
+            expenses.push(newExp);
+            titleInput.value = '';
+            amountInput.value = '';
+            payerInput.value = '';
+            renderExpenses();
+        }
+
+        function deleteExpense(index) {
+            expenses.splice(index, 1);
+            renderExpenses();
+        }
+
+        function renderExpenses() {
+            var listContainer = document.getElementById('expense-list');
+            var totalEl = document.getElementById('total-amount');
+            var perPersonEl = document.getElementById('per-person-amount');
+
+            if (!listContainer || !totalEl || !perPersonEl) return;
+
+            var total = 0;
+            var html = '';
+
+            if (expenses.length === 0) {
+                html = '<p class="text-center text-[#8D6E63] py-4 text-[20px]">目前尚無記帳紀錄，請上方新增輸入。</p>';
+            } else {
+                expenses.forEach(function(exp, idx) {
+                    total += exp.amount;
+                    html += '<div class="flex items-center justify-between bg-white p-3 rounded-xl border border-[#D7CCC8] text-[20px]">';
+                    html += '<div><p class="font-bold text-auroraBlue">' + exp.title + '</p><p class="text-[18px] text-[#78909C]">支付人: ' + exp.payer + '</p></div>';
+                    html += '<div class="flex items-center gap-4"><span class="font-bold text-appleRed">¥' + exp.amount.toLocaleString() + '</span>';
+                    html += '<button onclick="deleteExpense(' + idx + ')" class="text-red-400 hover:text-red-600 font-bold px-2">✕</button></div></div>';
+                });
+            }
+
+            listContainer.innerHTML = html;
+            totalEl.innerText = '¥' + total.toLocaleString();
+            var perPerson = total / 2;
+            perPersonEl.innerText = '¥' + perPerson.toLocaleString() + ' /人';
+        }
+
+        window.onload = function() {
+            switchDay(1);
+        };
+    </script>
+</body>
+</html>
